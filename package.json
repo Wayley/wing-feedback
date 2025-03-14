@@ -1,10 +1,24 @@
 {
-  "name": "css-modules",
-  "version": "0.0.0",
-  "private": true,
+  "name": "wing-feedback",
+  "version": "0.0.1",
+  "description": "feedback components with vue",
+  "keywords": [
+    "feedback",
+    "components",
+    "vue",
+    "wing"
+  ],
   "dependencies": {
     "wing-scheduler": "^0.0.2"
   },
+  "types": "dist/wing-feedback.d.ts",
+  "main": "dist/wing-feedback.es.js",
+  "module": "dist/wing-feedback.esm.js",
+  "unpkg": "dist/wing-feedback.js",
+  "browser": "dist/wing-feedback.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rm -rf dist && rollup -c"
   },

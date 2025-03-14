@@ -1,33 +1,34 @@
 <template>
-  <div :class="$style.red">
-    Hello
-    <span class="green">{{ msg }}</span>
-    {{ datetime }}
-    <div>title: {{ props?.title }}</div>
-    <div>content: {{ props?.content }}</div>
-    <div>xxxCYZZ={{ feedback?.type }}</div>
+  <view>
+    <Toast v-if="feedback && feedback?.feedbackType == 1" v-bind="feedback" />
+    <Modal v-if="feedback && feedback?.feedbackType == 2" v-bind="feedback" @confirm="closeFeedback(true)" @cancel="closeFeedback(false)" />
+    <Loading v-if="feedback && feedback?.feedbackType == 3" v-bind="feedback" />
     <slot />
-  </div>
+  </view>
 </template>
 <script lang="ts">
-export const feedback: Ref<{ type: 1 | 2 | 0 } | null> = ref({ type: 0 });
+export const feedback: Ref<FeedbackOptions | null> = ref(null);
 </script>
 <script setup lang="ts">
-import { onMounted, ref, type Ref } from 'vue';
-export interface ToastProps {
-  title?: string;
-  content?: string;
-}
-const msg: Ref<string> = ref('World');
-const datetime: Ref<number> = ref(new Date().getTime());
+import { Ref, ref } from 'vue';
+import useFeedback from '../index.ts';
+import Loading, { type LoadingProps } from './Loading.vue';
+import Modal, { type ModalProps } from './Modal.vue';
+import Toast, { type ToastProps } from './Toast.vue';
 
-const props = defineProps<ToastProps>();
-
-onMounted(() => {
-  setInterval(() => {
-    datetime.value = new Date().getTime();
-  }, 1000);
-});
+export type FeedbackOptions = ToastProps &
+  ModalProps &
+  LoadingProps & {
+    /**
+     * - 1: Toast
+     *
+     * - 2: Modal
+     *
+     * - 3: Loading
+     */
+    feedbackType: 1 | 2 | 3;
+  };
+const { closeFeedback } = useFeedback();
 </script>
 
 <style module>

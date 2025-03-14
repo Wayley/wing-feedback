@@ -4,15 +4,41 @@ import PostCSS from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript';
 import dts from 'vite-plugin-dts';
+import { name } from './package.json';
+const $mame = '$WingFeedback';
 
 /** @type {import('rollup').RollupOptions[]} */
 const config = [
   {
     input: 'src/index.ts',
-    output: {
-      file: 'dist/wing-feedback.js',
-      format: 'esm',
-    },
+    output: [
+      {
+        file: `dist/${name}.js`,
+        format: 'umd',
+        name: $mame,
+      },
+      {
+        file: `dist/${name}.esm.js`,
+        format: 'esm',
+      },
+      {
+        file: `dist/${name}.es.js`,
+        format: 'es',
+      },
+      {
+        file: `dist/${name}.amd.js`,
+        format: 'amd',
+      },
+      {
+        file: `dist/${name}.cjs.js`,
+        format: 'cjs',
+      },
+      {
+        file: `dist/${name}.iife.js`,
+        format: 'iife',
+        name: $mame,
+      },
+    ],
     plugins: [
       dts({
         rollupTypes: true,
