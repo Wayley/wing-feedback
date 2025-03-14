@@ -1,6 +1,7 @@
 import NodeResolve from '@rollup/plugin-node-resolve';
 import PostCSS from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
+import typescript from 'rollup-plugin-typescript';
 import VuePlugin from 'rollup-plugin-vue';
 
 /** @type {import('rollup').RollupOptions[]} */
@@ -16,6 +17,11 @@ const config = [
       // Resolve packages from `node_modules` e.g. `style-inject` module
       // used by `rollup-plugin-postcss` to inline CSS.
       NodeResolve(),
+      typescript({
+        tsconfig: false,
+        experimentalDecorators: true,
+        module: 'es2015',
+      }),
       VuePlugin({
         // PostCSS-modules options for <style module> compilation
         cssModulesOptions: {
