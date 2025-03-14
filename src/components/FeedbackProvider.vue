@@ -5,15 +5,20 @@
     {{ datetime }}
     <div>title: {{ props?.title }}</div>
     <div>content: {{ props?.content }}</div>
+    <div>xxxCYZZ={{ feedback?.type }}</div>
     <slot />
   </div>
 </template>
-
+<script lang="ts">
+export const feedback: Ref<{ type: 1 | 2 | 0 } | null> = ref({ type: 0 });
+</script>
 <script setup lang="ts">
 import { onMounted, ref, type Ref } from 'vue';
-import { ToastProps } from '..';
-
-const msg: Ref<string> = ref('World 11');
+export interface ToastProps {
+  title?: string;
+  content?: string;
+}
+const msg: Ref<string> = ref('World');
 const datetime: Ref<number> = ref(new Date().getTime());
 
 const props = defineProps<ToastProps>();

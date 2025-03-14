@@ -1,16 +1,12 @@
-import { readonly, Ref, ref } from 'vue';
-import FeedbackProviderComp from './components/FeedbackProvider.vue';
-export const FeedbackProvider = FeedbackProviderComp;
+import { readonly } from 'vue';
+import FeedbackProvider, { feedback, type ToastProps } from './components/FeedbackProvider.vue';
 
-export interface ToastProps {
-  title?: string;
-  content?: string;
-}
-
-const feedback: Ref<{ type: 1 | 2 }> = ref({ type: 1 });
 export function useFeedBack() {
   return {
+    FeedbackProvider,
     feedback: readonly(feedback),
+    showToast: (o?: ToastProps) => (feedback.value = { type: 1 }),
+    showModal: () => (feedback.value = { type: 2 }),
   };
 }
 
