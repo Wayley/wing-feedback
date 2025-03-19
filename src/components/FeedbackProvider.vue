@@ -10,8 +10,8 @@
 export const feedback: Ref<FeedbackOptions | null> = ref(null);
 </script>
 <script setup lang="ts">
-import { type Ref, ref } from 'vue';
-import useFeedback from '../index';
+import { Ref, ref } from 'vue';
+import useFeedback from '../index.ts';
 import Loading, { type LoadingProps } from './Loading.vue';
 import Modal, { type ModalProps } from './Modal.vue';
 import Toast, { type ToastProps } from './Toast.vue';
