@@ -1,5 +1,5 @@
 <template>
-  <div class="mask" :style="{ backgroundColor }" @touchmove.stop.prevent="() => {}">
+  <div class="wing-feedback-mask" :style="{ backgroundColor }" @touchmove.stop.prevent="() => {}">
     <slot />
   </div>
 </template>
@@ -10,14 +10,3 @@ export type MaskProps = {
 };
 const { backgroundColor } = defineProps<MaskProps>();
 </script>
-<style scoped>
-.mask {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
-  background-color: rgba(0, 0, 0, 0.35);
-}
-</style>

@@ -20,17 +20,17 @@ function closeFeedback(v: boolean) {
 }
 interface UseFeedbackResult {
   FeedbackProvider: DefineComponent;
-  showToast: (o: ToastProps) => Promise<boolean>;
-  showModal: (o: ModalProps) => Promise<boolean>;
-  showLoading: (o: LoadingProps) => () => void;
+  showToast: (o?: ToastProps) => Promise<boolean>;
+  showModal: (o?: ModalProps) => Promise<boolean>;
+  showLoading: (o?: LoadingProps) => () => void;
   closeFeedback: (v: boolean) => void;
 }
 export function useFeedback(): UseFeedbackResult {
   return {
     FeedbackProvider: FeedbackProvider as DefineComponent,
-    showToast: (options: ToastProps) => scheduler.add(() => openFeedback({ ...options, feedbackType: 1 })),
-    showModal: (options: ModalProps) => scheduler.add(() => openFeedback({ ...options, feedbackType: 2 })),
-    showLoading: (options: LoadingProps) => {
+    showToast: (options?: ToastProps) => scheduler.add(() => openFeedback({ ...options, feedbackType: 1 })),
+    showModal: (options?: ModalProps) => scheduler.add(() => openFeedback({ ...options, feedbackType: 2 })),
+    showLoading: (options?: LoadingProps) => {
       scheduler.add(() => openFeedback({ ...options, feedbackType: 3 }));
       return () => feedbackResolve.value?.(true);
     },

@@ -30,15 +30,3 @@ export type FeedbackOptions = ToastProps &
   };
 const { closeFeedback } = useFeedback();
 </script>
-
-<style module>
-.red {
-  color: red;
-}
-</style>
-
-<style scoped>
-.green {
-  color: green;
-}
-</style>

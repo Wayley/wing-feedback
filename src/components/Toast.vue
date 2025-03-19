@@ -1,9 +1,7 @@
 <template>
-  <Mask class="flex">
-    <div class="toast">
-      <template v-if="type">
-        <icon :type="type == 'error' ? 'cancel' : type" :size="22" />
-      </template>
+  <Mask class="wing-feedback-flex">
+    <div class="wing-feedback-toast">
+      <icon v-if="type" :type="type == 'error' ? 'cancel' : type" :size="22" />
       <div>{{ content }}</div>
     </div>
   </Mask>
@@ -25,19 +23,3 @@ export type ToastProps = {
 
 defineProps<ToastProps>();
 </script>
-
-<style scoped>
-.flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.toast {
-  max-width: 65%;
-  border-radius: 6px;
-  background: #f4f7f8;
-  text-align: center;
-  padding: 4px;
-  font-size: 12px;
-}
-</style>
