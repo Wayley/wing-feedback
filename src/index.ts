@@ -1,4 +1,4 @@
-import { DefineComponent, ref, Ref } from 'vue';
+import { type DefineComponent, ref, type Ref } from 'vue';
 import Scheduler from 'wing-scheduler';
 import FeedbackProvider, { feedback, type FeedbackOptions } from './components/FeedbackProvider.vue';
 import { type LoadingProps } from './components/Loading.vue';
